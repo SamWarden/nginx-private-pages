@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx:1.27
+    container_name: nginx-private-pages
+    ports:
+      - "8080:80"
+    volumes:
+      - ./public:/usr/share/nginx/html:ro
+      - ./nginx:/etc/nginx:ro
+      - ./secrets/.htpasswd:/etc/pages/.htpasswd:ro
+    restart: unless-stopped
